@@ -98,3 +98,69 @@ mouse_stok = envanter[1][2]
 
 print("-" * 40)
 print(f"BONUS: İç İçe Liste Analizi -> Mouse Stok Adedi: {mouse_stok}")
+
+
+```
+
+### 3. DİĞER LİSTE METODLARI (SIRALAMA, SAYMA, KOPYALAMA)
+
+Listelere sadece veri ekleyip çıkarmıyoruz; çoğu zaman bu veriyi sıraya dizmemiz veya içinde arama yapmamız gerekiyor. Veri analizinde "En yüksek satış hangisi?" veya "Bu hatadan kaç tane var?" sorularını ceavplar
+
+
+* **`count()` (Sayma):** Listede bir elemanın kaç kez geçtiğini sayar(Frekans bulmak için).
+* **`sort()` (Sıralama):** Listeyi küçükten büyüğe (veya A'dan Z'ye) sıralar. **Dikkat:** Listeyi kalıcı olarak değiştirir!
+* **`reverse()` (Ters Çevirme):** Listeyi olduğu gibi tersine döndürür (Aynalama yapar).
+* **`copy()` (Kopyalama):** Listenin yedeğini alır. **Çok Önemli:** `liste2 = liste1` dersem yedeklemiş olmam, sadece aynı listeye yeni isim takmış olurum. Gerçek yedek için `copy()` şart.
+* **`clear()` (Temizleme):** Listenin içini tamamen boşaltır, boş bir liste `[]` haline getirir.
+
+---
+
+
+
+```python
+# SENARYO: Elimde bir sınıfın sınav notları var.
+# Bu notları analiz edip, sıralayıp, istatistik çıkarmak istiyorum
+
+notlar = [45, 90, 60, 45, 100, 75, 45, 85]
+
+print(f"Sınıf Notları (Ham): {notlar}")
+
+# --- 1. COUNT (SAYMA) ---
+# Sınıfta kaç kişi 45 alıp dersten kalma sınırında kalmış?
+kalan_sayisi = notlar.count(45)
+print(f"45 Alıp Kalan Öğrenci Sayısı: {kalan_sayisi}")
+
+# --- 2. COPY (YEDEKLEME) - KRİTİK NOKTA! ---
+# Notları sıralamadan önce orijinal sırayı (öğrenci numarasına göre olabilir) kaybetmemek için yedekliyorum.
+# HATA UYARISI: 'yedek_notlar = notlar' yapsaydım, orijinali de bozulacaktı!
+yedek_notlar = notlar.copy()
+
+# --- 3. SORT & REVERSE (SIRALAMA) ---
+# Notları Küçükten Büyüğe Sırala
+notlar.sort()
+print(f"Sıralı Notlar (Artan): {notlar}")
+
+# Notları Büyükten Küçüğe Sırala (reverse=True parametresi)
+notlar.sort(reverse=True)
+print(f"Sıralı Notlar (Azalan): {notlar}")
+
+# En yüksek ve en düşük notu artık kolayca görebilirim (İlk ve Son eleman)
+print(f"En Yüksek Not: {notlar[0]}")
+print(f"En Düşük Not : {notlar[-1]}")
+
+# --- 4. REVERSE (TERSE ÇEVİRME) ---
+# Sıralama yapmadan sadece listeyi ters yüz etmek istersem:
+# Yedek listeyi kullanalım.
+yedek_notlar.reverse()
+print(f"Orijinal Listenin Tersten Yazılışı: {yedek_notlar}")
+
+# --- 5. INDEX (KONUM BULMA) ---
+# 100 alan öğrenci kaçıncı sırada? (Listede ilk bulduğu konumu verir)
+# Not: Listemiz şu an büyükten küçüğe sıralı olduğu için en başta çıkmalı.
+derece_index = notlar.index(100)
+print(f"100 Alan Öğrencinin Sıralamadaki Yeri (Index): {derece_index}")
+
+# --- 6. CLEAR (TEMİZLEME) ---
+# Dönem bitti, listeyi boşaltıp yeni döneme hazırlanalım
+notlar.clear()
+print(f"Dönem Sonu Liste Durumu: {notlar}")
